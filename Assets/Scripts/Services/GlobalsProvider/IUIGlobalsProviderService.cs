@@ -2,7 +2,7 @@
 
 namespace Services.GlobalsProvider
 {
-    public interface IGlobalReferencesProviderService
+    public interface IUIGlobalsProviderService
     {
         Canvas StaticUiCanvas { get; }
         Canvas DynamicUiCanvas { get; }

@@ -2,7 +2,8 @@
 {
     public interface IUIService
     {
-        T OpenElement<T>(EUIShowType showType) where T : UIElementBase;
-        void CloseElement<T>() where T : UIElementBase;
+        T OpenScreen<T>() where T : UIElementBase;
+        T OpenDialogue<T>() where T : UIElementBase;
+        
     }
 }

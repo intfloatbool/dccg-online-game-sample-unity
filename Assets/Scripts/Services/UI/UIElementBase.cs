@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace Services.UI
 {
@@ -6,5 +7,18 @@ namespace Services.UI
     {
         public bool IsActive => gameObject.activeInHierarchy;
         public void SetActive(bool isActive) => gameObject.SetActive(isActive);
+
+        protected virtual void OnActive() {}
+        protected virtual void OnDeactivate() {}
+
+        private void OnEnable()
+        {
+            OnActive();
+        }
+
+        private void OnDisable()
+        {
+            OnDeactivate();
+        }
     }
 }

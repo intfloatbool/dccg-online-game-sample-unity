@@ -1,0 +1,4 @@
+﻿{
+  "name": "InitializationAsmDef",
+  "references":[ "GUID:0d8beb7f090555447a6cf5ce9e54dbb4", "GUID:096cdf7ccab34d1fa9053ea3bf1dc5eb", "GUID:9e067688e85143faa0d3b362a4bdd166", "GUID:36b868e9fe494d69b9fa62c341f5c48b" ]
+}

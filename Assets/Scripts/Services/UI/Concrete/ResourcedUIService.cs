@@ -1,42 +1,57 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Services.GameResources;
+using System.ComponentModel;
 using Services.GlobalsProvider;
-using UnityEngine;
 using Zenject;
 
 namespace Services.UI.Concrete
 {
-    public class ResourcedUIService : IUIService
+    public class ResourcedUIService : IUIService, ITickable
     {
-        protected List<UIElementBase> _openedElements = new List<UIElementBase>(10);
-
-        protected IGameResourcesService _gameResourceService;
-        protected IGlobalReferencesProviderService _globalReferencesProviderService;
+        protected IUIGlobalsProviderService _uiGlobalsProviderService;
+        
+        
+        protected Stack<UIElementBase> _dialogsStack = new Stack<UIElementBase>();
+        protected DiContainer _container;
+        
 
         [Inject]
-        public void Init(IGameResourcesService gameResourcesService, IGlobalReferencesProviderService globalReferencesProviderService)
+        public void Init(IUIGlobalsProviderService iuiGlobalsProviderService, DiContainer container)
         {
-            _gameResourceService = gameResourcesService;
-            _globalReferencesProviderService = globalReferencesProviderService;
+            _container = container;
+            _uiGlobalsProviderService = iuiGlobalsProviderService;
         } 
         
-        public virtual T OpenElement<T>(EUIShowType showType) where T : UIElementBase
+        public virtual T OpenScreen<T>() where T : UIElementBase
         {
-            var elementPrefab = _gameResourceService.LoadResource<T>();
-            var elementInstance = Object.Instantiate(elementPrefab, _globalReferencesProviderService.StaticUiCanvas.transform);
-            _openedElements.Add(elementInstance);
-            return elementInstance;
+            var typeName = typeof(T).Name;
+            
+            //TODO: take it from pool
+            var element = 
+                    _container.InstantiatePrefabResource(
+                        typeName, _uiGlobalsProviderService.StaticUiCanvas.transform
+                        ).GetComponent<T>();
+            
+            return element;
+        }
+        
+        public void Close(UIElementBase element)
+        {
+            element.SetActive(false);
+        }
+        
+
+        public T OpenDialogue<T>() where T : UIElementBase
+        {
+            throw new System.NotImplementedException();
+            IPoolable x;
         }
 
-        public virtual void CloseElement<T>() where T : UIElementBase
+        
+
+
+        public virtual void Tick()
         {
-            var openedElement = _openedElements.FirstOrDefault(e => e.GetType().Name.Equals(typeof(T).Name));
-            if (openedElement)
-            {
-                _openedElements.Remove(openedElement);
-                Object.Destroy(openedElement);   
-            }
+            throw new System.NotImplementedException();
         }
     }
 }
