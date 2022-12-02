@@ -1,5 +1,4 @@
 using MVVM.Core;
-using MVVM.PlayerMeta;
 using MVVM.PlayerMeta.Models;
 using MVVM.PlayerMeta.ViewModels;
 using Zenject;

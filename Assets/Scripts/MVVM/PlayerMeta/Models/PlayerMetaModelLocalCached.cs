@@ -35,7 +35,6 @@ namespace MVVM.PlayerMeta.Models
             viewModel.NickName.Subscribe(OnNicknameChanged);
             viewModel.SoftCurrencyAmount.Subscribe(OnSoftValueChanged);
             viewModel.HardCurrencyAmount.Subscribe(OnHardValueChanged);
-
         }
 
         private void OnNicknameChanged(string nickname)

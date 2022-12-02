@@ -1,0 +1,16 @@
+{
+    "name": "UIAsmDef",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9e067688e85143faa0d3b362a4bdd166"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
